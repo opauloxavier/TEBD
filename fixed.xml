@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="stylesheet.xsl"?>
+<orm>
+	<mapeamento>
+		<classe>br.ufrrj.Pessoa</classe>
+		<tabela>PESSOA</tabela>
+		<coluna chave_primaria="true">
+			<classe tipo="java.lang.Integer">oid</classe>
+			<tabela tipo="int">pessoa_id</tabela>
+		</coluna>
+		<coluna>
+			<classe tipo="java.lang.String">nome</classe>
+			<tabela tipo="varchar">nome_completo</tabela>
+		</coluna>
+		<coluna valor_unico="true">
+			<classe tipo="java.lang.String">cpf</classe>
+			<tabela tipo="char(11)">cpf</tabela>
+		</coluna>
+		<!-- uma pessoa tem um endereco, mas um endereco pode pertencer a várias pessoas -->
+		<relacionamento tipo="muitos_para_um" obrigatorio="false">
+			<classe>br.ufrrj.Endereco</classe>
+			<par>
+				<!-- utiliza a chave primaria da tabela endereco -->
+				<de chave_primaria="true" />
+				<!-- campo em Pessoa -->
+				<para tipo="java.lang.Integer">endereco_id</para>
+			</par>
+		</relacionamento>
+	</mapeamento>
+</orm>
