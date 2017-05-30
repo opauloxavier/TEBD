@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="orm" xmlns="orm" elementFormDefault="qualified">
+  <xs:element name="orm">
+      <xs:complexType>
+          <xs:sequence>
+              <xs:element name="mapeamento">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="tabela">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="colunas">
+                                       <xs:complexType>
+                                           <xs:sequence>
+                                               <xs:element name="coluna" maxOccurs="unbounded">
+                                                   <xs:complexType>
+                                                       <xs:sequence>
+                                                           <xs:element name="classe">
+                                                               <xs:complexType>
+                                                                   <xs:simpleContent>
+                                                                       <xs:extension base="xs:string">
+                                                                           <xs:attribute name="tipo" type="xs:string" use="required" /> <!-- atributos classe -->
+                                                                       </xs:extension>
+                                                                   </xs:simpleContent>
+                                                               </xs:complexType>
+                                                           </xs:element>
+                                                       </xs:sequence>
+                                                       <xs:attribute type="xs:boolean" name="chave_primaria" use="optional"/> <!-- Atributos Coluna-->
+                                                       <xs:attribute type="xs:boolean" name="valor_unico" use="optional"/> <!-- Atributos Coluna-->
+                                                       <xs:attribute type="xs:string" name="tipo" use="required"/> <!-- Atributos Coluna-->
+                                                       <xs:attribute type="xs:string" name="nome_col" use="required"/> <!-- Atributos Coluna-->
+                                                       <xs:attribute type="xs:integer" name="length" use="optional"/> <!-- Atributos Coluna-->
+                                                   </xs:complexType>
+                                               </xs:element>
+                                           </xs:sequence>
+                                       </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="relacionamentos">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="relacionamento" maxOccurs="unbounded">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element name="par">
+                                                                <xs:complexType>
+                                                                    <xs:sequence>
+                                                                        <xs:element name="para">
+                                                                            <xs:complexType>
+                                                                                <xs:simpleContent>
+                                                                                    <xs:extension base="xs:string">
+                                                                                        <xs:attribute name="tipo" type="xs:string" use="required"/>
+                                                                                    </xs:extension>
+                                                                                </xs:simpleContent>
+                                                                            </xs:complexType>
+                                                                        </xs:element>
+                                                                    </xs:sequence>
+                                                                    <xs:attribute name="classe" type="xs:string" use="required"/>
+                                                                    <xs:attribute name="chave_primaria" type="xs:boolean" use="optional" default="true"/>
+                                                                </xs:complexType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                        <xs:attribute name="tipo" type="xs:string" use="required"/>
+                                                        <xs:attribute name="obrigatorio" type="xs:boolean" use="optional" default="false"/>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                                <xs:attribute type="xs:string" name="nome" use="required"/> <!--Atributos de tabela -->
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute type="xs:string" name="classe"/> <!--Atributos de mapeamento -->
+                </xs:complexType>
+              </xs:element>
+          </xs:sequence>
+      </xs:complexType>
+  </xs:element>
+</xs:schema>

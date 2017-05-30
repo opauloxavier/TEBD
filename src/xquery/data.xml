@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<orm>
+	<mapeamento classe="br.ufrrj.Pessoa">
+		<tabela nome="PESSOA">
+			<colunas>
+				<coluna chave_primaria="true" tipo="int" nome_col="pessoa_id">
+					<classe tipo="java.lang.String">oid</classe>
+				</coluna>
+				<coluna tipo="varchar" nome_col="nome_completo">
+					<classe tipo="java.lang.String">nome</classe>
+				</coluna>
+				<coluna tipo="char" length="11" nome_col="cpf" valor_unico="true">
+					<classe tipo="java.lang.String">cpf</classe>
+				</coluna>
+			</colunas>
+			<relacionamentos>
+					<relacionamento tipo="muitos_para_um" obrigatorio="false">
+							<par classe="br.ufrrj.Endereco" chave_primaria="true">
+								<para tipo="java.lang.Integer">endereco_id</para>
+							</par>
+					</relacionamento>
+			</relacionamentos>
+		</tabela>
+	</mapeamento>
+</orm>
